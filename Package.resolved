@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "TengizReportSP",
+        "repositoryURL": "https://github.com/igor1309/TengizReportSP",
+        "state": {
+          "branch": "main",
+          "revision": "87e00327b7405e0cfd1f2666c3f6ee117cad3e61",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
