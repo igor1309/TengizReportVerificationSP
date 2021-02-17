@@ -18,6 +18,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/igor1309/TengizReportSP", .branch("main")),
+        .package(url: "https://github.com/igor1309/TextReports", .branch("main")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,10 +29,7 @@ let package = Package(
         ),
         .testTarget(
             name: "VerificationTests",
-            dependencies: ["Verification", "TengizReportSP"],
-            resources: [
-                .process("Reports (txt)")
-            ]
+            dependencies: ["Verification", "TengizReportSP", "TextReports"]
         ),
     ]
 )
