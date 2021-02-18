@@ -12,23 +12,11 @@ import TextReports
 
 final class ReportVerificationTests: XCTestCase {
     func testTokenization() throws {
-        var filename: String
-
-        filename = "Саперави АМ 2020-06"
-        filename = "Саперави АМ 2020-07"
-        filename = "Саперави АМ август 2020"
-        filename = "Саперави АМ сентябрь 2020 "
-        filename = "Саперави октябрь"
-        filename = "Саперави АМ ноябрь 2020 "
-        filename = "Саперави АМ декабрь 2020 "
-        filename = "Саперави АМ январь 2021 "
-        filename = "ВМ ЩК ноябрь 2020"
-        filename = "ВМ ЩК декабрь 2020"
-        filename = "ВМ ЩК январь 2021"
-
-        let contents = try ContentLoader.contentsOfFile(filename)
-        XCTAssertFalse(try ContentLoader.contentsOfFile(filename).isEmpty, "Can't read Report file content")
-        _ = try TokenizedReport(stringLiteral: contents).report().get()
+        for filename in ContentLoader.allFilenames {
+            let contents = try ContentLoader.contentsOfFile(filename)
+            XCTAssertFalse(try ContentLoader.contentsOfFile(filename).isEmpty, "Can't read Report file content")
+            _ = try TokenizedReport(stringLiteral: contents).report().get()
+        }
 
     }
 
