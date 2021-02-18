@@ -20,17 +20,27 @@ extension TokenizedReport.Report {
     }
     public var isTotalExpensesMatch: Bool { totalExpensesDelta == 0 }
 
-    public var totalDelta: Double {
-        let delta = (revenue - totalExpenses) - balance
-        return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
+    public var calculatedBalance: Double {
+        revenue - calculatedTotalExpenses
     }
-    public var isTotalOk: Bool { totalDelta == 0 }
-
     public var balanceDelta: Double {
-        let delta = (openingBalance + balance) - runningBalance
+        let delta = calculatedBalance - balance
         return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
     }
     public var isBalanceOk: Bool { balanceDelta == 0 }
+
+    public var calculatedRunningBalance: Double {
+        openingBalance + calculatedBalance
+    }
+    public var runningBalanceDelta: Double {
+        let delta = calculatedRunningBalance - runningBalance
+        return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
+    }
+    public var isRunningBalanceOk: Bool { runningBalanceDelta == 0 }
+
+    public var isGroupAmountsMatch: Bool {
+        groups.reduce(true, { $0 && $1.isAmountMatch })
+    }
 }
 
 extension TokenizedReport.Report.Group {
