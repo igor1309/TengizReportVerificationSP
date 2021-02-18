@@ -15,20 +15,20 @@ extension TokenizedReport.Report {
         groups.map(\.amount).reduce(0, +)
     }
     public var totalExpensesDelta: Double {
-        let delta = abs(totalExpenses - calculatedTotalExpenses)
-        return delta < TokenizedReport.Report.threshold ? 0 : delta
+        let delta = totalExpenses - calculatedTotalExpenses
+        return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
     }
     public var isTotalExpensesMatch: Bool { totalExpensesDelta == 0 }
 
     public var totalDelta: Double {
-        let delta = abs((revenue - totalExpenses) - balance)
-        return delta < TokenizedReport.Report.threshold ? 0 : delta
+        let delta = (revenue - totalExpenses) - balance
+        return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
     }
     public var isTotalOk: Bool { totalDelta == 0 }
 
     public var balanceDelta: Double {
-        let delta = abs(runningBalance - (openingBalance + balance))
-        return delta < TokenizedReport.Report.threshold ? 0 : delta
+        let delta = (openingBalance + balance) - runningBalance
+        return abs(delta) < TokenizedReport.Report.threshold ? 0 : delta
     }
     public var isBalanceOk: Bool { balanceDelta == 0 }
 }
