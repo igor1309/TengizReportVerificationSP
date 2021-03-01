@@ -13,21 +13,21 @@ final class FilesTests: XCTestCase {
         XCTAssertEqual(ContentLoader.allFilenames.count, 11, "Report sample might have been added.")
         
         
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ 2020-06").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ 2020-07").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ август 2020").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ сентябрь 2020 ").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави октябрь").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ ноябрь 2020 ").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ декабрь 2020 ").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("Саперави АМ январь 2021 ").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("ВМ ЩК ноябрь 2020").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("ВМ ЩК декабрь 2020").isEmpty, "Can't read Report file content")
-        XCTAssertFalse(try ContentLoader.contentsOfFile("ВМ ЩК январь 2021").isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ 2020-06").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ 2020-07").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ август 2020").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ сентябрь 2020 ").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави октябрь").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ ноябрь 2020 ").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ декабрь 2020 ").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("Саперави АМ январь 2021 ").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("ВМ ЩК ноябрь 2020").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("ВМ ЩК декабрь 2020").get().isEmpty, "Can't read Report file content")
+        XCTAssertFalse(try ContentLoader.contentsOfSampleFile("ВМ ЩК январь 2021").get().isEmpty, "Can't read Report file content")
         
         
         for filename in ContentLoader.allFilenames {
-            XCTAssertFalse(try ContentLoader.contentsOfFile(filename).isEmpty, "Can't read Report file content")
+            XCTAssertFalse(try ContentLoader.contentsOfSampleFile(filename).get().isEmpty, "Can't read Report file content")
         }
         
         let prefixes: [String] = ["Название объекта: Саперави Аминьевка\nМесяц: июнь2020 (с 24 по 30 июня)\tОборот:26",
@@ -45,11 +45,14 @@ final class FilesTests: XCTestCase {
         XCTAssertEqual(11, prefixes.count)
         XCTAssertEqual(ContentLoader.allFilenames.count, prefixes.count)
         
-        let contentsPrefixes = try ContentLoader.allFilenames.map(ContentLoader.contentsOfFile).map { String($0.prefix(80)) }
+        let contentsPrefixes = try ContentLoader.allFilenames.map {
+            try ContentLoader.contentsOfSampleFile($0).get()
+        }
+        .map { String($0.prefix(80)) }
         XCTAssertEqual(contentsPrefixes, prefixes)
         
         for (filename, prefix) in zip(ContentLoader.allFilenames, prefixes) {
-            let contents = try ContentLoader.contentsOfFile(filename)
+            let contents = try ContentLoader.contentsOfSampleFile(filename).get()
             XCTAssertEqual(String(contents.prefix(80)), prefix)
         }
     }

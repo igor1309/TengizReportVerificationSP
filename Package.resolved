@@ -5,27 +5,27 @@
         "package": "SwiftToolbox",
         "repositoryURL": "https://github.com/igor1309/SwiftToolbox",
         "state": {
-          "branch": "main",
-          "revision": "460b3205d12a86a6743b2f5616c7b8c671334000",
-          "version": null
+          "branch": null,
+          "revision": "350aff79b4e1c98fa832bbfd38d70e191aba71ed",
+          "version": "1.0.2"
         }
       },
       {
         "package": "TengizReportSP",
         "repositoryURL": "https://github.com/igor1309/TengizReportSP",
         "state": {
-          "branch": "main",
-          "revision": "97b165d8f5613c0bf117964ce25df8d44731b236",
-          "version": null
+          "branch": null,
+          "revision": "4a41c1221c3e4ece6093e5d13ae46a966f9b4f8c",
+          "version": "1.0.2"
         }
       },
       {
         "package": "TextReports",
         "repositoryURL": "https://github.com/igor1309/TextReports",
         "state": {
-          "branch": "main",
-          "revision": "05d1e9832e32cbd81e99ccd85708e14099c1f642",
-          "version": null
+          "branch": null,
+          "revision": "fdd03c4bc6238291d3eee82281199121cfc259fa",
+          "version": "1.0.2"
         }
       }
     ]
