@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import TextReports
+@testable import TextReports
 
 final class FilesTests: XCTestCase {
     func testTextFilesReadable() throws {

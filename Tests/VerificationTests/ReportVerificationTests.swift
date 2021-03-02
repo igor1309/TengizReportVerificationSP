@@ -7,7 +7,7 @@
 
 import XCTest
 import Model
-import TextReports
+@testable import TextReports
 @testable import Verification
 
 final class ReportVerificationTests: XCTestCase {
