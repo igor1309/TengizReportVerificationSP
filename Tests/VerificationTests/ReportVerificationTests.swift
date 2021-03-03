@@ -13,8 +13,8 @@ import Model
 final class ReportVerificationTests: XCTestCase {
     func testTokenization() throws {
         for filename in ContentLoader.allFilenames {
-            let contents = try ContentLoader.contentsOfSampleFile(filename).get()
-            XCTAssertFalse(try ContentLoader.contentsOfSampleFile(filename).get().isEmpty, "Can't read Report file content")
+            let contents = try ContentLoader.contentsOfSampleFile(named: filename).get()
+            XCTAssertFalse(try ContentLoader.contentsOfSampleFile(named: filename).get().isEmpty, "Can't read Report file content")
             _ = try TokenizedReport(stringLiteral: contents).report().get()
         }
 
@@ -22,7 +22,7 @@ final class ReportVerificationTests: XCTestCase {
 
     func testAllReportsVerification() throws {
         for filename in ContentLoader.allFilenames {
-            let contents = try ContentLoader.contentsOfSampleFile(filename).get()
+            let contents = try ContentLoader.contentsOfSampleFile(named: filename).get()
             let report = try TokenizedReport(stringLiteral: contents).report().get()
 
             let reportID = "\(report.company) \(report.monthStr):\n"
