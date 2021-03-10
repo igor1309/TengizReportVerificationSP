@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Model
+import TengizReportModel
 @testable import TextReports
 @testable import Verification
 

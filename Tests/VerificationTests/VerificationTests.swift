@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Model
+import TengizReportModel
 @testable import Verification
 
 final class VerificationTests: XCTestCase {

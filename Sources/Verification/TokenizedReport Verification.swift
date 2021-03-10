@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Model
+import TengizReportModel
 
 extension TokenizedReport.Report {
     static var threshold = 1e-5
