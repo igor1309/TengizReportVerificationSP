@@ -56,7 +56,7 @@ final class VerificationTests: XCTestCase {
             monthStr: "", month: 1, year: 2021, company: "Company", revenue: 1_000, dailyAverage: 30, openingBalance: openingBalance, balance: balance, runningBalance: runningBalance, totalExpenses: 1_200,
             groups: [TokenizedReport.Report.Group(
                 groupNumber: 0, title: "Group", amount: 700, target: nil,
-                items: [TokenizedReport.Report.Group.Item(itemNumber: 1, title: "Item", amount: 700, note: nil)]
+                items: [TokenizedReport.Report.Group.Item(itemNumber: 1, title: "Item", amount: 700)]
             )]
         )
         XCTAssertEqual(report.calculatedBalance, 300)
@@ -71,7 +71,7 @@ final class VerificationTests: XCTestCase {
             monthStr: "", month: 1, year: 2021, company: "Company", revenue: 1_000, dailyAverage: 30, openingBalance: openingBalance, balance: balance, runningBalance: runningBalance, totalExpenses: 1_200,
             groups: [TokenizedReport.Report.Group(
                 groupNumber: 0, title: "Group", amount: 700, target: nil,
-                items: [TokenizedReport.Report.Group.Item(itemNumber: 1, title: "Item", amount: 700, note: nil)]
+                items: [TokenizedReport.Report.Group.Item(itemNumber: 1, title: "Item", amount: 700)]
             )]
         )
         XCTAssertEqual(report.calculatedBalance, 300)
@@ -89,7 +89,7 @@ final class VerificationTests: XCTestCase {
             groups: [TokenizedReport.Report.Group(
                 groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
                 items: [TokenizedReport.Report.Group.Item(
-                            itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                            itemNumber: 1, title: "Item", amount: itemAmount)]
             )]
         )
         XCTAssertEqual(report.totalExpensesDelta, 0)
@@ -103,7 +103,7 @@ final class VerificationTests: XCTestCase {
             groups: [TokenizedReport.Report.Group(
                 groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
                 items: [TokenizedReport.Report.Group.Item(
-                            itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                            itemNumber: 1, title: "Item", amount: itemAmount)]
             )]
         )
         XCTAssertEqual(report.totalExpensesDelta, 0, "Below threshold")
@@ -117,7 +117,7 @@ final class VerificationTests: XCTestCase {
             groups: [TokenizedReport.Report.Group(
                 groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
                 items: [TokenizedReport.Report.Group.Item(
-                            itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                            itemNumber: 1, title: "Item", amount: itemAmount)]
             )]
         )
         XCTAssertNotEqual(report.totalExpensesDelta, 0, "Above threshold")
@@ -129,9 +129,9 @@ final class VerificationTests: XCTestCase {
         let group1 = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: 100, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil),
+                        itemNumber: 1, title: "Item", amount: 50),
                     TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil)]
+                        itemNumber: 1, title: "Item", amount: 50)]
         )
         XCTAssert(group1.isAmountMatch)
 
@@ -139,7 +139,7 @@ final class VerificationTests: XCTestCase {
         let group2 = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: 100, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil)]
+                        itemNumber: 1, title: "Item", amount: 50)]
         )
         XCTAssertFalse(group2.isAmountMatch)
 
@@ -161,9 +161,9 @@ final class VerificationTests: XCTestCase {
         var group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: 100, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil),
+                        itemNumber: 1, title: "Item", amount: 50),
                     TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil)]
+                        itemNumber: 1, title: "Item", amount: 50)]
         )
         XCTAssert(group.isAmountMatch)
 
@@ -171,7 +171,7 @@ final class VerificationTests: XCTestCase {
         group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: 100, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: 50, note: nil)]
+                        itemNumber: 1, title: "Item", amount: 50)]
         )
         XCTAssertFalse(group.isAmountMatch)
     }
@@ -182,7 +182,7 @@ final class VerificationTests: XCTestCase {
         var group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                        itemNumber: 1, title: "Item", amount: itemAmount)]
         )
         XCTAssertEqual(group.amountCalculated, group.amount)
         XCTAssertEqual(group.amountDelta, 0)
@@ -193,7 +193,7 @@ final class VerificationTests: XCTestCase {
         group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                        itemNumber: 1, title: "Item", amount: itemAmount)]
         )
         XCTAssertNotEqual(group.amountCalculated, group.amount)
         XCTAssertEqual(group.amountDelta, abs(groupAmount - itemAmount))
@@ -205,7 +205,7 @@ final class VerificationTests: XCTestCase {
         group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                        itemNumber: 1, title: "Item", amount: itemAmount)]
         )
         XCTAssertNotEqual(group.amountCalculated, group.amount)
         XCTAssertNotEqual(group.amountDelta, groupAmount - itemAmount)
@@ -217,7 +217,7 @@ final class VerificationTests: XCTestCase {
         group = TokenizedReport.Report.Group(
             groupNumber: 1, title: "Group", amount: groupAmount, target: 0.25,
             items: [TokenizedReport.Report.Group.Item(
-                        itemNumber: 1, title: "Item", amount: itemAmount, note: nil)]
+                        itemNumber: 1, title: "Item", amount: itemAmount)]
         )
         XCTAssertNotEqual(group.amountCalculated, group.amount)
         XCTAssertNotEqual(group.amountDelta, groupAmount - itemAmount)
